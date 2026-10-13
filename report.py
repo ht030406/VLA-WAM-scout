@@ -30,15 +30,36 @@ def build_markdown_report(
     paper_summaries: Dict[str, dict],
     repo_judgements: Dict[str, dict],
     insight: str,
+    dedup_info: Dict[str, tuple] = None,
 ) -> str:
     date_label = _cn_date_label()
     n_papers, n_repos, n_models = len(papers), len(repos), len(models)
+    dedup_info = dedup_info or {}
 
     lines = [
         f"# VLA / WAM 每日情报 · {date_label}",
         "",
         f"> 数据源：arXiv（{n_papers} 篇）/ GitHub（{n_repos} 仓）/ HuggingFace（{n_models} 模型）",
         f"> 自动生成于 {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')} · vla-wam-scout",
+        "",
+    ]
+    # 去重信息展示
+    dp = dedup_info.get("papers", (0,))
+    dr = dedup_info.get("repos", (0, 0))
+    dm = dedup_info.get("models", (0,))
+    dup_parts = []
+    if dp and dp[0]:
+        dup_parts.append(f"论文重复忽略 {dp[0]} 篇")
+    if dr and (dr[0] or dr[1]):
+        s = f"仓库重复忽略 {dr[0]} 个"
+        if dr[1]:
+            s += f"（{dr[1]} 个人气飙升已重报）"
+        dup_parts.append(s)
+    if dm and dm[0]:
+        dup_parts.append(f"模型重复忽略 {dm[0]} 个")
+    if dup_parts:
+        lines.append(f"> 🗂 去重：{'；'.join(dup_parts)}")
+    lines += [
         "",
         "---",
         "",
@@ -161,9 +182,10 @@ def repo_line(r: dict, judge: Dict[str, dict]) -> str:
     highlight = j.get("highlight") or (r.get("description") or "（暂无摘要）")
     star = r.get("stars", 0)
     recent = "🆕新仓 " if r.get("created_recent") else ("🔄活跃 " if r.get("pushed_recent") else "")
+    surge = "🔥人气飙升 " if r.get("_surge") else ""
     return (
         f"- **[{r['full_name']}]({r['html_url']})** `{verdict_cn}` `{r.get('language') or '—'}` "
-        f"`⭐{star}` {recent}\n"
+        f"`⭐{star}` {surge}{recent}\n"
         f"  - {highlight}"
     )
 
@@ -174,9 +196,10 @@ def repo_line_compact(r: dict, judge: Dict[str, dict]) -> str:
         j.get("verdict", ""), "候选")
     highlight = j.get("highlight") or (r.get("description") or "")
     star = r.get("stars", 0)
+    surge = "🔥人气飙升 " if r.get("_surge") else ""
     return (
         f"[{r['full_name']}]({r['html_url']}) `{verdict_cn}` `{r.get('language') or '—'}` "
-        f"`⭐{star}` — {highlight}"
+        f"`⭐{star}` {surge}— {highlight}"
     )
 
 

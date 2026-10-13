@@ -1,0 +1,141 @@
+{
+  "papers": {
+    "2610.13945": "2026-10-13",
+    "2610.13943": "2026-10-13",
+    "2610.13912": "2026-10-13",
+    "2610.13816": "2026-10-13",
+    "2610.13781": "2026-10-13",
+    "2610.13740": "2026-10-13",
+    "2610.13732": "2026-10-13",
+    "2610.13628": "2026-10-13",
+    "2610.13578": "2026-10-13",
+    "2610.13522": "2026-10-13",
+    "2610.13516": "2026-10-13",
+    "2610.13504": "2026-10-13",
+    "2610.13453": "2026-10-13",
+    "2610.13262": "2026-10-13",
+    "2610.13212": "2026-10-13",
+    "2610.13172": "2026-10-13",
+    "2610.13164": "2026-10-13",
+    "2610.13117": "2026-10-13"
+  },
+  "repos": {
+    "NVlabs/LongLive": {
+      "last": "2026-10-13",
+      "stars": 2769
+    },
+    "DravenALG/awesome-vla-wam": {
+      "last": "2026-10-13",
+      "stars": 1047
+    },
+    "linchangyi1/Awesome-Touch": {
+      "last": "2026-10-13",
+      "stars": 781
+    },
+    "sou350121/VLA-Handbook": {
+      "last": "2026-10-13",
+      "stars": 701
+    },
+    "baidu-baige/LoongForge": {
+      "last": "2026-10-13",
+      "stars": 678
+    },
+    "robocurve/inspect-robots": {
+      "last": "2026-10-13",
+      "stars": 671
+    },
+    "flashrt-project/FlashRT": {
+      "last": "2026-10-13",
+      "stars": 647
+    },
+    "datawhalechina/dive-into-embodied-ai": {
+      "last": "2026-10-13",
+      "stars": 578
+    },
+    "luohongk/Embodied-AI-Daily": {
+      "last": "2026-10-13",
+      "stars": 477
+    },
+    "syswonder/robonix": {
+      "last": "2026-10-13",
+      "stars": 378
+    },
+    "Noietch/EVA-CLIENT": {
+      "last": "2026-10-13",
+      "stars": 318
+    },
+    "rokbenko/quackd": {
+      "last": "2026-10-13",
+      "stars": 259
+    },
+    "wadeKeith/Awesome-Embodied-AI": {
+      "last": "2026-10-13",
+      "stars": 251
+    },
+    "strands-labs/robots": {
+      "last": "2026-10-13",
+      "stars": 182
+    },
+    "x-zheng16/Awesome-Embodied-AI-Safety": {
+      "last": "2026-10-13",
+      "stars": 152
+    },
+    "UniWAM/UniWAM": {
+      "last": "2026-10-13",
+      "stars": 120
+    },
+    "TingdeLiu/tingdeliu.github.io": {
+      "last": "2026-10-13",
+      "stars": 116
+    },
+    "RadixRootMind/RadixQuantVLA": {
+      "last": "2026-10-13",
+      "stars": 102
+    },
+    "FastCrest/tether": {
+      "last": "2026-10-13",
+      "stars": 86
+    },
+    "gentlefress/OMEGA-0": {
+      "last": "2026-10-13",
+      "stars": 56
+    },
+    "GehaoZhang6/Grounded-Action-Model": {
+      "last": "2026-10-13",
+      "stars": 39
+    },
+    "HyperbolicCurve/Awesome-World-Action-Model": {
+      "last": "2026-10-13",
+      "stars": 37
+    },
+    "DexForce/UNITAS": {
+      "last": "2026-10-13",
+      "stars": 37
+    },
+    "JethroJames/awesome-robots-icl": {
+      "last": "2026-10-13",
+      "stars": 31
+    },
+    "wangskyone/awesome-VLA-WAM": {
+      "last": "2026-10-13",
+      "stars": 21
+    }
+  },
+  "models": {
+    "marcinnowakwyn/my-embodied-ai": "2026-10-13",
+    "SamerAyyad/VLA_Samer_24.09.2026_200eps_policy_ACT_500k": "2026-10-13",
+    "Xiaodong/lingbot-vla-2-robotwin-clean-bs512-step2k": "2026-10-13",
+    "HenryYHW/VLAlert": "2026-10-13",
+    "tsangb34/lingbot-vla-v2-6b-droid-open-drawer-5ep": "2026-10-13",
+    "Fantasyyy/SDUF-Team-Lingbot-vla-2-competition-10k": "2026-10-13",
+    "MrBean2024/MA-VLA-pi05-shuffle06-mask04": "2026-10-13",
+    "MrBean2024/AE-VLA-TG": "2026-10-13",
+    "MrBean2024/AE-VLA-TG-Armattention": "2026-10-13",
+    "MrBean2024/AE-VLA-TG-Skilllora": "2026-10-13",
+    "MrBean2024/AE-VLA-full": "2026-10-13",
+    "Luffuly/streaming-code-world-model": "2026-10-13",
+    "yogaprat/toy-embodied-ai": "2026-10-13",
+    "Stephaniedavis1985/embodied-ai": "2026-10-13",
+    "nigutierrez/embodied-ai": "2026-10-13"
+  }
+}

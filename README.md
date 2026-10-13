@@ -44,6 +44,23 @@ python run_daily.py
 | `ARXIV_MAX_RESULTS` | – | `60` | 论文条数上限 |
 | `GITHUB_MAX_REPOS` | – | `25` | 日报仓库条数上限 |
 | `HF_MAX_MODELS` | – | `25` | HF 模型条数上限 |
+| `DEDUP_DAYS_PAPER` | – | `14` | 论文去重窗口（天） |
+| `DEDUP_DAYS_REPO` | – | `7` | 仓库去重窗口（天） |
+| `DEDUP_DAYS_MODEL` | – | `30` | 模型去重窗口（天） |
+| `STAR_SURGE_REL` / `STAR_SURGE_ABS` | – | `0.5` / `200` | 仓库 star 飙升重报阈值（相对/绝对） |
+
+## 跨日去重（防止日报重复）
+
+采集窗口有迭代重叠（今天 `[T-2, T]`，明天 `[T-1, T+1]`），活跃 GitHub 仓库还
+会天天 push。为避免日报重复，工具维护 `reports/state.json`：
+
+- 论文 14 天内不重复报道；仓库 7 天内不重复报道；模型 30 天内不重复报道；
+- 例外：仓库 star 在去重窗口内飙升（相对 ≥50% 或绝对 ≥200）会以
+  `🔥人气飙升` 标记重新报道；
+- 日报头部显示本次忽略的重复数量（`🗂 去重：…`）；
+- LLM 只总结**新增**部分，顺带节省 API token。
+
+> `state.json` 会被 Git 提交跟踪，因此 GitHub Actions 每日运行同样具有跨日记忆。
 
 ## 每日自动运行（GitHub Actions）
 
