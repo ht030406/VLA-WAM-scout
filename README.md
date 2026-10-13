@@ -38,7 +38,7 @@ python run_daily.py
 | `LINGSHU_API_KEY` | ✅ | – | 灵枢 API Key（OpenAI 兼容） |
 | `LINGSHU_BASE_URL` | – | `https://computing.huawei.com/lingshu/api/v1` | 灵枢端点 |
 | `LINGSHU_MODEL` | – | `DeepSeek-V4-Flash-0731` | 总结用模型 |
-| `CA_CERT_FILE` | – | `/root/.certs/lingshu_chain.pem` | 自签 CA 证书路径；GitHub Actions 留空 |
+| `CA_CERT_FILE` | – | `/root/.certs/lingshu_chain.pem` | 灵枢自签 CA 证书路径；GitHub Actions 由工作流自动指向仓库内 `certs/lingshu_chain.pem` |
 | `GITHUB_TOKEN` | – | – | GitHub PAT（提升搜索限额；无 token 也能跑） |
 | `LOOKBACK_DAYS` | – | `2` | 采集回看天数（论文窗口为空时自动扩大） |
 | `ARXIV_MAX_RESULTS` | – | `60` | 论文条数上限 |
@@ -69,13 +69,25 @@ python run_daily.py
 
 ### 接入步骤
 
-1. 将本项目代码推送到你的 GitHub 仓库（可复制进 `Infinity4B/daily-arxiv-vla` 或独立仓库）；
+1. 将本项目代码推送（**连同 `certs/lingshu_chain.pem` 一起提交**）到你的 GitHub 仓库（可复制进 `Infinity4B/daily-arxiv-vla` 或独立仓库）；
 2. 在 `Settings → Secrets and variables → Actions` 添加：
    - **Secret**：`LINGSHU_API_KEY`（必填）
    - **Secret**（可选）：`GITHUB_TOKEN`（GitHub PAT，提高搜索限额）
    - **Variables**（可选）：`LINGSHU_BASE_URL` / `LINGSHU_MODEL` / `LOOKBACK_DAYS` 等
 3. 推送后可在 `Actions` 页面点 **Run workflow** 手动触发一次验证；
 4. 之后每天中午自动运行，报告提交到 `reports/` 目录。
+
+### 关于灵枢自签 CA 证书（重要）
+
+灵枢 API（`computing.huawei.com`）使用自签证书链，GitHub Actions runner 默认不信任。
+因此：
+
+- 仓库根目录内置 `certs/lingshu_chain.pem`（灵枢链证书），**必须随仓库提交**；
+- 工作流已自动设置 `CA_CERT_FILE: ${{ github.workspace }}/certs/lingshu_chain.pem`，
+  无需你在仓库设置里配置；
+- 如果 `CA_CERT_FILE` 缺失或指向不存在文件，`LingshuClient` 会回退为系统证书验证，
+  此时灵枢调用会报 SSL 错误 → 报告所有 AI 摘要降级为「AI 摘要生成失败」；
+  排查时看 Actions 日志中 `[llm] 使用自签 CA 验证灵枢 API: ... (存在=True/False)` 一行即可。
 
 > 注意：灵枢 API 若部署在私有网络，需确认 GitHub Actions runner 可访问；
 > 若证书链不可用，可在变量里把 `LINGSHU_BASE_URL` 指向公网可达的镜像端点。
