@@ -1,0 +1,55 @@
+name: VLA/WAM 每日情报采集
+
+on:
+  schedule:
+    # 每日北京时间 12:00（UTC 4:00），与 daily-arxiv-vla 网站同节奏
+    - cron: '0 4 * * *'
+  workflow_dispatch: {}   # 支持手动触发
+
+permissions:
+  contents: write
+
+concurrency:
+  group: "vla-wam-scout"
+  cancel-in-progress: false
+
+jobs:
+  scout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 设置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: 安装依赖
+        run: |
+          pip install -r requirements.txt
+
+      - name: 运行每日采集与总结
+        run: |
+          python run_daily.py
+        env:
+          LINGSHU_API_KEY: ${{ secrets.LINGSHU_API_KEY }}
+          LINGSHU_BASE_URL: ${{ vars.LINGSHU_BASE_URL || 'https://computing.huawei.com/lingshu/api/v1' }}
+          LINGSHU_MODEL: ${{ vars.LINGSHU_MODEL || 'DeepSeek-V4-Flash-0731' }}
+          # GitHub Actions 环境使用系统证书；本地开发才需要自定义 CA
+          CA_CERT_FILE: ''
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LOOKBACK_DAYS: ${{ vars.LOOKBACK_DAYS || '2' }}
+
+      - name: 提交报告
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add reports/daily-vla-wam-*.md reports/latest.md reports/repos.md
+          if git diff --staged --quiet; then
+            echo "没有新的报告需要提交"
+          else
+            CURRENT_DATE=$(date '+%Y-%m-%d')
+            git commit -m "每日VLA/WAM情报更新 - $CURRENT_DATE [skip ci]"
+            git push
+          fi
