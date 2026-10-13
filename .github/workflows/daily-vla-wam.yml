@@ -36,8 +36,9 @@ jobs:
           LINGSHU_API_KEY: ${{ secrets.LINGSHU_API_KEY }}
           LINGSHU_BASE_URL: ${{ vars.LINGSHU_BASE_URL || 'https://computing.huawei.com/lingshu/api/v1' }}
           LINGSHU_MODEL: ${{ vars.LINGSHU_MODEL || 'DeepSeek-V4-Flash-0731' }}
-          # GitHub Actions 环境使用系统证书；本地开发才需要自定义 CA
-          CA_CERT_FILE: ''
+          # 灵枢 API 使用自签证书链：指向仓库内 certs/ 下的证书
+          # （GitHub Actions runner 不信任该自签 CA，必须显式指定）
+          CA_CERT_FILE: ${{ github.workspace }}/certs/lingshu_chain.pem
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LOOKBACK_DAYS: ${{ vars.LOOKBACK_DAYS || '2' }}
 

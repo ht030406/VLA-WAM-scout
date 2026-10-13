@@ -28,7 +28,13 @@ class LingshuClient:
             "Content-Type": "application/json",
         })
         # 自签 CA：灵枢链证书
-        self.verify = config.CA_CERT_FILE if config.CA_CERT_FILE and _path_exists(config.CA_CERT_FILE) else True
+        cert = config.CA_CERT_FILE
+        self.verify = cert if cert and _path_exists(cert) else True
+        if cert:
+            print(f"  [llm] 使用自签 CA 验证灵枢 API: {cert} "
+                  f"(存在={_path_exists(cert)})")
+        else:
+            print("  [llm] 未配置 CA_CERT_FILE，回退为系统证书验证（灵枢自签 CA 将失败）")
 
     def chat(self, messages: List[dict], max_tokens: int = None, temperature: float = None,
              retries: int = 2) -> str:
