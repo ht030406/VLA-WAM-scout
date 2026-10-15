@@ -1,0 +1,193 @@
+{
+  "papers": {
+    "2610.20609": "2026-10-15",
+    "2610.20604": "2026-10-15",
+    "2610.20504": "2026-10-15",
+    "2610.20474": "2026-10-15",
+    "2610.20442": "2026-10-15",
+    "2610.20429": "2026-10-15",
+    "2610.20351": "2026-10-15",
+    "2610.20240": "2026-10-15",
+    "2610.20223": "2026-10-15",
+    "2610.20160": "2026-10-15",
+    "2610.20157": "2026-10-15",
+    "2610.20134": "2026-10-15",
+    "2610.20064": "2026-10-15",
+    "2610.20019": "2026-10-15",
+    "2610.19957": "2026-10-15",
+    "2610.19955": "2026-10-15",
+    "2610.19825": "2026-10-15",
+    "2610.19795": "2026-10-15",
+    "2610.19753": "2026-10-15",
+    "2610.19746": "2026-10-15",
+    "2610.19677": "2026-10-15",
+    "2610.19656": "2026-10-15",
+    "2610.19651": "2026-10-15",
+    "2610.19642": "2026-10-15",
+    "2610.19604": "2026-10-15",
+    "2610.19600": "2026-10-15",
+    "2610.19579": "2026-10-15",
+    "2610.19517": "2026-10-15",
+    "2610.19495": "2026-10-15",
+    "2610.19479": "2026-10-15",
+    "2610.19438": "2026-10-15",
+    "2610.19327": "2026-10-15",
+    "2610.19248": "2026-10-15",
+    "2610.19224": "2026-10-15",
+    "2610.19212": "2026-10-15",
+    "2610.19143": "2026-10-15",
+    "2610.19129": "2026-10-15",
+    "2610.19007": "2026-10-15",
+    "2610.18874": "2026-10-15",
+    "2610.18873": "2026-10-15",
+    "2610.18869": "2026-10-15",
+    "2610.18855": "2026-10-15",
+    "2610.18852": "2026-10-15",
+    "2610.18843": "2026-10-15",
+    "2610.18826": "2026-10-15",
+    "2610.18792": "2026-10-15",
+    "2610.18790": "2026-10-15",
+    "2610.18774": "2026-10-15",
+    "2610.18699": "2026-10-15",
+    "2610.18697": "2026-10-15",
+    "2610.18650": "2026-10-15",
+    "2610.18637": "2026-10-15",
+    "2610.18596": "2026-10-15",
+    "2610.18570": "2026-10-15",
+    "2610.18568": "2026-10-15",
+    "2610.18447": "2026-10-15",
+    "2610.18381": "2026-10-15",
+    "2610.18373": "2026-10-15",
+    "2610.18305": "2026-10-15",
+    "2610.18289": "2026-10-15"
+  },
+  "repos": {
+    "datawhalechina/every-embodied": {
+      "last": "2026-10-15",
+      "stars": 4070
+    },
+    "physical-superintelligence-lab/Psi0": {
+      "last": "2026-10-15",
+      "stars": 2864
+    },
+    "ace-trump-tech/MindPaw": {
+      "last": "2026-10-15",
+      "stars": 2637
+    },
+    "dexmal/opendm": {
+      "last": "2026-10-15",
+      "stars": 2304
+    },
+    "LMD0311/Awesome-World-Model": {
+      "last": "2026-10-15",
+      "stars": 2280
+    },
+    "OpenWAM-Official/OpenWAM": {
+      "last": "2026-10-15",
+      "stars": 1035
+    },
+    "FluxVLA/FluxVLA": {
+      "last": "2026-10-15",
+      "stars": 742
+    },
+    "sou350121/VLA-Handbook": {
+      "last": "2026-10-15",
+      "stars": 707
+    },
+    "baidu-baige/LoongForge": {
+      "last": "2026-10-15",
+      "stars": 684
+    },
+    "robocurve/inspect-robots": {
+      "last": "2026-10-15",
+      "stars": 678
+    },
+    "RealXiaoze/humanoid-motion-intelligence": {
+      "last": "2026-10-15",
+      "stars": 648
+    },
+    "xiaomi-research/recogdrive": {
+      "last": "2026-10-15",
+      "stars": 623
+    },
+    "datawhalechina/dive-into-embodied-ai": {
+      "last": "2026-10-15",
+      "stars": 586
+    },
+    "lucasjinreal/Crane": {
+      "last": "2026-10-15",
+      "stars": 504
+    },
+    "worldbench/awesome-vla-for-ad": {
+      "last": "2026-10-15",
+      "stars": 500
+    },
+    "wadeKeith/Awesome-Embodied-AI": {
+      "last": "2026-10-15",
+      "stars": 251
+    },
+    "OpenWAM/OpenWAM": {
+      "last": "2026-10-15",
+      "stars": 199
+    },
+    "strands-labs/robots": {
+      "last": "2026-10-15",
+      "stars": 185
+    },
+    "RobotControlStack/robot-control-stack": {
+      "last": "2026-10-15",
+      "stars": 166
+    },
+    "greenvla/GreenVLA": {
+      "last": "2026-10-15",
+      "stars": 144
+    },
+    "TingdeLiu/tingdeliu.github.io": {
+      "last": "2026-10-15",
+      "stars": 121
+    },
+    "RadixRootMind/RadixQuantVLA": {
+      "last": "2026-10-15",
+      "stars": 102
+    },
+    "FastCrest/tether": {
+      "last": "2026-10-15",
+      "stars": 86
+    },
+    "HyperbolicCurve/Awesome-World-Action-Model": {
+      "last": "2026-10-15",
+      "stars": 37
+    },
+    "wangskyone/awesome-VLA-WAM": {
+      "last": "2026-10-15",
+      "stars": 21
+    }
+  },
+  "models": {
+    "Fantasyyy/SDUF-Team-Lingbot-vla-2-competition-10k-fp32": "2026-10-15",
+    "ttakahashijason/embodied-ai60": "2026-10-15",
+    "KUMARAJAYli/embodied-ai-survey": "2026-10-15",
+    "cody-miller/embodied-ai8": "2026-10-15",
+    "vorobyovmaxim/embodied-ai": "2026-10-15",
+    "Enzo-teixeira/embodied-ai-analysis": "2026-10-15",
+    "zielinski9113/embodied-ai": "2026-10-15",
+    "Nehaguptaski/embodied-ai": "2026-10-15",
+    "immarcussantos/study-embodied-ai": "2026-10-15",
+    "t0rn0d0/VLA-Delta-robotwin": "2026-10-15",
+    "t0rn0d0/VLA-Delta-libero": "2026-10-15",
+    "mliv/lingbot-vla-v2-arx5-block-fullframe-fixed": "2026-10-15",
+    "Donghyun1228/ttt-vla-libero-sglp-mlp-decoder-20261015": "2026-10-15",
+    "tsangb34/lingbot-vla-v2-6b-droid-pour-water-5ep": "2026-10-15",
+    "SamerAyyad/VLA_Samer_11.10.2026_300eps_policy_SmolVLA": "2026-10-15",
+    "t0rn0d0/VLA-Delta-base": "2026-10-15",
+    "Adam-YAN/vla-adapter-pro-liberox-base": "2026-10-15",
+    "Dongkkka/Task_000759_Move_Vegetable_Whiteroom_VLA-JEPA-bs8-step5000-lr1e4-causalFalse": "2026-10-15",
+    "SignalIsPuPuPu/GTA-VLA-pretrain-380k": "2026-10-15",
+    "Adam-YAN/lingbot-vla-v2-6b-e5-allclean-ep6-gbs384-s7": "2026-10-15",
+    "tsangb34/lingbot-vla-v2-6b-droid-towel-in-basket-5ep": "2026-10-15",
+    "ben090909/vla-vector-06": "2026-10-15",
+    "endeshen/vla-finetune-forgetting-ckpts-intermediate": "2026-10-15",
+    "rayaanoidpr/grandtour-world-models": "2026-10-15",
+    "Chiahaoleekan/embodied-ai-tryout6": "2026-10-15"
+  }
+}
