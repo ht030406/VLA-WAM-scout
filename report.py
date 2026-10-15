@@ -31,6 +31,7 @@ def build_markdown_report(
     repo_judgements: Dict[str, dict],
     insight: str,
     dedup_info: Dict[str, tuple] = None,
+    llm_error: str = None,
 ) -> str:
     date_label = _cn_date_label()
     n_papers, n_repos, n_models = len(papers), len(repos), len(models)
@@ -59,6 +60,8 @@ def build_markdown_report(
         dup_parts.append(f"模型重复忽略 {dm[0]} 个")
     if dup_parts:
         lines.append(f"> 🗂 去重：{'；'.join(dup_parts)}")
+    if llm_error:
+        lines.append(f"> ⚠️ AI 摘要异常：{llm_error}（报告已降级为原文链接）")
     lines += [
         "",
         "---",

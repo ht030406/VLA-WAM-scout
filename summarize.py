@@ -30,6 +30,7 @@ class LingshuClient:
         # 自签 CA：灵枢链证书
         cert = config.CA_CERT_FILE
         self.verify = cert if cert and _path_exists(cert) else True
+        self.last_error: Optional[str] = None   # 最近一次调用失败原因（供报告内联诊断）
         if cert:
             print(f"  [llm] 使用自签 CA 验证灵枢 API: {cert} "
                   f"(存在={_path_exists(cert)})")
@@ -60,9 +61,11 @@ class LingshuClient:
                 return content.strip()
             except (requests.RequestException, KeyError, urllib3.exceptions.HTTPError) as e:
                 if attempt == retries:
+                    self.last_error = f"{type(e).__name__}: {e}"
                     print(f"  [llm] call failed after {retries} retries: {e}")
                     return ""
                 time.sleep(5 * (attempt + 1))
+        self.last_error = "API 连续返回空 content（重试后仍为空）"
         return ""
 
 

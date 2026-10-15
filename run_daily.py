@@ -75,21 +75,28 @@ def main() -> int:
     paper_summaries: dict = {}
     repo_judgements: dict = {}
     insight = ""
+    llm_error = ""
+    llm_client = None
     try:
-        client = LingshuClient()
+        llm_client = LingshuClient()
         if papers:
             print("  总结论文...")
-            paper_summaries = summarize_papers(client, papers)
+            paper_summaries = summarize_papers(llm_client, papers)
         if repos:
             print("  评估仓库...")
-            repo_judgements = judge_repos(client, repos)
+            repo_judgements = judge_repos(llm_client, repos)
         if papers or repos:
             print("  生成每日要点...")
-            insight = daily_insight(client, len(papers), len(repos),
+            insight = daily_insight(llm_client, len(papers), len(repos),
                                     papers[:8], repos[:8])
     except Exception as e:
+        llm_error = f"{type(e).__name__}: {e}"
         print(f"  !! LLM 总结阶段失败（报告将降级）：{e}")
         traceback.print_exc()
+    if not llm_error and llm_client is not None and (papers or repos) \
+            and not paper_summaries and not repo_judgements:
+        # 有需要总结的条目但一条摘要都没拿到：把调用侧原因带进报告
+        llm_error = llm_client.last_error or "API 调用未抛异常但返回为空"
 
     # ---------- 5. 登记状态 + 写报告 ----------
     state.mark_papers(papers)
@@ -103,7 +110,7 @@ def main() -> int:
     }
     md = report_mod.build_markdown_report(
         papers, repos, models, paper_summaries, repo_judgements, insight,
-        dedup_info=dedup_info,
+        dedup_info=dedup_info, llm_error=llm_error,
     )
     repos_md = report_mod.build_repos_md(repos, repo_judgements, date_str)
 
