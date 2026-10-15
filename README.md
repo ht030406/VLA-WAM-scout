@@ -234,7 +234,8 @@ on:
 | 报告/日志里看到 | 含义 | 处理 |
 |---|---|---|
 | `⚠️ AI 摘要异常：RuntimeError: LLM_API_KEY 未配置…` | secret 没配/名字不对 | 补 `MODELSCOPE_ACCESS_TOKEN`（见 2.2） |
-| `⚠️ AI 摘要异常：401 …（模型 …）` | 令牌无效/过期 | 换新令牌 |
+| `⚠️ AI 摘要异常：401 … 服务端: Please bind your Alibaba Cloud account before use.` | ModelScope 账号**未绑定阿里云账号**，推理接口被拒（token 本身有效） | 见下方「ModelScope 绑定阿里云」步骤 |
+| `⚠️ AI 摘要异常：401 …（模型 …）` 其他 401 | 令牌无效/过期 | 换新令牌 |
 | `⚠️ AI 摘要异常：NameResolutionError … computing.huawei.com` | 端点域名公网不可解析（灵枢） | 换公网端点 ModelScope（改 `LLM_BASE_URL`） |
 | `⚠️ AI 摘要异常：429 限流（模型 …）` | 该模型限流 | 已自动换备用模型；仍频繁则调整 `LLM_FALLBACK_MODELS` |
 | 报告正常但某些条目「AI 摘要生成失败」 | LLM 解析/返回偶发 | 属容错降级，等下次或手动重跑 |
@@ -328,6 +329,14 @@ HF API    ──► 模型（createdAt 排序，跨词去重，无关 pipeline �
 - 本地定时用 flock 防重入，避免上一轮未结束导致重复采集。
 
 ## FAQ
+
+**Q：ModelScope 报 401「Please bind your Alibaba Cloud account before use.」怎么办？**
+这是 ModelScope 账号还没绑定阿里云账号，导致推理接口用不了（查看模型列表没问题，调用就 401）。
+绑定步骤：
+1. 登录 https://www.modelscope.cn ，点右上角头像 → **个人中心 / 账号设置**；
+2. 找到 **「绑定阿里云账号」**（若没有，在模型详情页点「API 调用」tab 通常也会弹出引导）；
+3. 按引导绑定或一键注册阿里云账号（手机号验证即可，免费），必要时同意「模型服务协议」；
+4. 绑定后**无需更换令牌**，直接重新 Run workflow 即可。
 
 **Q：灵枢还能用吗？**
 能。在能访问华为内网的机器（如本 DSH 服务器）上照常用；只是 GitHub 云 runner 连不到它。

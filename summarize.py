@@ -74,8 +74,21 @@ class LingshuClient:
                     if attempt < retries:
                         time.sleep(5 * (attempt + 1))
                     else:
-                        self.last_error = f"{type(e).__name__}: {e}（模型 {model}）"
-                        print(f"  [llm] 模型 {model} 失败，尝试下一个: {type(e).__name__}: {e}")
+                        # 提取 HTTP 错误的服务端提示（如 401 的具体原因），便于直接诊断
+                        detail = ""
+                        resp = getattr(e, "response", None)
+                        if resp is not None:
+                            try:
+                                detail = resp.json().get("error", {}).get("message", "")
+                            except Exception:
+                                detail = ""
+                            if not detail:
+                                detail = (resp.text or "")[:150]
+                        cause = f"{type(e).__name__}: {e}"
+                        if detail:
+                            cause += f" | 服务端: {detail}"
+                        self.last_error = f"{cause}（模型 {model}）"
+                        print(f"  [llm] 模型 {model} 失败，尝试下一个: {cause}")
                         break   # 跳出内层 → 外层换下一个模型
 
         self.last_error = self.last_error or "所有模型均调用失败"
