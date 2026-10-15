@@ -1,11 +1,11 @@
 | 日期 | 仓库 | 语言 | Stars | 类型 | 亮点 |
 |------|------|------|-------|------|------|
-| 2026-10-14 | [NVIDIA/cosmos](https://github.com/NVIDIA/cosmos) | Jupyter Notebook | ⭐12032 | 源码仓 | NVIDIA Cosmos is an open platform of world models, datasets, and tools that enables developers to build Physical AI for robots, autonomous vehicles, smart infrastructure, and more. |
-| 2026-10-14 | [datawhalechina/every-embodied](https://github.com/datawhalechina/every-embodied) | Jupyter Notebook | ⭐4054 | 源码仓 | 仅需Python基础，从0构建自己的具身智能机器人；从0逐步构建VLA/OpenVLA/SmolVLA/Pi0， 深入理解具身智能 |
-| 2026-10-14 | [LMD0311/Awesome-World-Model](https://github.com/LMD0311/Awesome-World-Model) | — | ⭐2280 | 源码仓 | Collect some World Models for Autonomous Driving (and Robotic, etc.) papers. |
-| 2026-10-14 | [sii-research/tau-0-vla](https://github.com/sii-research/tau-0-vla) | Python | ⭐640 | 源码仓 | This repo is the official implementation of  "τ0-VLA: a Hierarchical Robot Foundation Model with World-Model-Guided Test-Time Computation". |
-| 2026-10-14 | [lucasjinreal/Crane](https://github.com/lucasjinreal/Crane) | Rust | ⭐502 | 源码仓 | A Pure Rust based LLM, VLM, VLA, TTS, OCR Inference Engine, powering by Candle & Rust. Alternate to your llama.cpp but much more simpler and cleaner.. |
-| 2026-10-14 | [RobotControlStack/robot-control-stack](https://github.com/RobotControlStack/robot-control-stack) | Python | ⭐166 | 源码仓 | A lean, ROS-free sim-to-real framework for training and deploying Vision-Language-Action (VLA) models and RL agents. Native MuJoCo Gymnasium wrappers with synchronous execution for Franka, UR5e, xArm, SO101 and YAM. |
-| 2026-10-14 | [hanyangyu1021/maskwam](https://github.com/hanyangyu1021/maskwam) | Python | ⭐47 | 源码仓 | Official implementation of MaskWAM: Unifying Mask Prompting and Prediction for World-Action Models |
-| 2026-10-14 | [drussell23/JARVIS](https://github.com/drussell23/JARVIS) | Python | ⭐33 | 源码仓 | Trinity AGI OS -- Autonomous self-evolving AI operating system. Ouroboros + Venom proactive self-development engine, 19 sensors, 11-phase governance pipeline, Trinity consciousness, VLA vision pipeline, voice biometric auth. The organism develops itself. |
-| 2026-10-14 | [hanjianhua44/Awesome-VLA-Papers](https://github.com/hanjianhua44/Awesome-VLA-Papers) | Python | ⭐30 | 源码仓 | A curated collection of papers on Vision-Language-Action (VLA) models for autonomous driving and robotics |
+| 2026-10-15 | [physical-superintelligence-lab/Psi0](https://github.com/physical-superintelligence-lab/Psi0) | Python | ⭐2864 | 源码仓⭐ | 开源人形机器人VLA基础模型，面向通用移动操作与操作智能。 |
+| 2026-10-15 | [dexmal/opendm](https://github.com/dexmal/opendm) | Python | ⭐2304 | 源码仓⭐ | 开放世界具身智能基础模型，支持通用操作与交互。 |
+| 2026-10-15 | [OpenWAM-Official/OpenWAM](https://github.com/OpenWAM-Official/OpenWAM) | Python | ⭐1033 | 源码仓⭐ | 开源模块化世界-动作模型预训练框架，系统探索WAM。 |
+| 2026-10-15 | [FluxVLA/FluxVLA](https://github.com/FluxVLA/FluxVLA) | Python | ⭐741 | 源码仓⭐ | 一站式VLA工程平台，覆盖数据到真机部署，含模型实现与训练推理代码 |
+| 2026-10-15 | [RealXiaoze/humanoid-motion-intelligence](https://github.com/RealXiaoze/humanoid-motion-intelligence) | — | ⭐648 | 文档/汇总 | 人形机器人运动智能知识库，收录论文、开源项目、产业与求职信息 |
+| 2026-10-15 | [xiaomi-research/recogdrive](https://github.com/xiaomi-research/recogdrive) | Python | ⭐623 | 源码仓⭐ | ReCogDrive强化认知框架，面向端到端自动驾驶，含训练推理代码 |
+| 2026-10-15 | [worldbench/awesome-vla-for-ad](https://github.com/worldbench/awesome-vla-for-ad) | HTML | ⭐500 | 文档/汇总 | VLA自动驾驶综述列表，涵盖过去现在未来工作 |
+| 2026-10-15 | [OpenWAM/OpenWAM](https://github.com/OpenWAM/OpenWAM) | Python | ⭐199 | 源码仓⭐ | 斯坦福官方开源，可组合世界-动作模型框架，Python实现。 |
+| 2026-10-15 | [greenvla/GreenVLA](https://github.com/greenvla/GreenVLA) | Python | ⭐144 | 源码仓⭐ | Sber团队分阶段VLA模型，面向通用机器人，含论文与代码。 |

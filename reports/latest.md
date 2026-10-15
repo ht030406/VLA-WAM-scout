@@ -1,15 +1,15 @@
-# VLA / WAM 每日情报 · 2026-10-14 周三
+# VLA / WAM 每日情报 · 2026-10-15 周四
 
-> 数据源：arXiv（51 篇）/ GitHub（9 仓）/ HuggingFace（18 模型）
-> 自动生成于 2026-10-14 09:31 UTC · vla-wam-scout
+> 数据源：arXiv（38 篇）/ GitHub（10 仓）/ HuggingFace（11 模型）
+> 自动生成于 2026-10-15 06:40 UTC · vla-wam-scout
 
-> 🗂 去重：仓库重复忽略 16 个；模型重复忽略 7 个
+> 🗂 去重：论文重复忽略 22 篇；仓库重复忽略 15 个；模型重复忽略 14 个
 
 ---
 
 ## 📌 今日要点
 
-今日暂无可总结条目。
+今日 VLA/WAM 动态聚焦于“世界模型+精确动作”双线：SafeDriveVLA 以导航条件世界模型提升驾驶冲突感知，VITAL 与 Graph-Reweighted BC 则分别从视觉运动映射和人类干预重加权优化操作精度。开源侧，Psi0 推进人形通用智能，opendm 探索开放世界具身基础模型，MindPaw 降低入门门槛。值得关注的方向是：将世界模型预测与干预式学习结合，以提升复杂场景下的动作鲁棒性与泛化能力。
 
 ---
 
@@ -17,61 +17,106 @@
 
 ### 重点论文
 
-（今日无突出重点论文）
+- **SafeDriveVLA: Navigation-Conditioned World Model Dreaming for Conflict-Aware End-to-End Autonomous Driving** `[WorldModel]`
+  - 提出导航条件世界模型梦境，实现冲突感知的端到端自动驾驶
+  - Shaoyuan Xie, Zihan Zhang, Jingxuan Wang, Jiashu Qu et al. · [arXiv](https://arxiv.org/abs/2610.20609) · 💬 Accepted at CoRL 2026. Project page: https://safedrive-vla.github.io/SafeDriveVLA/
+
+- **VITAL: From Visual Motion to Precise Action** `[WorldModel]`
+  - 从视觉运动直接推导动作目标，避免轨迹表示与视觉动态脱节
+  - Ao Liang, Youquan Liu, Mingxiao Li, Wei Chow et al. · [arXiv](https://arxiv.org/abs/2610.20604) · 💬 Technical Report; 37 pages, 14 figures, 19 tables; Project Page at https://worldbench.github.io/vital GitHub at https://
+
+- **When Do Discrete Actions Make Good Continuous Controllers?** `[RobotPolicy]`
+  - 质疑连续动作参数化共识，探究离散动作在连续控制中的适用条件。
+  - Zeji Yi, Soham Dasgupta, Xinyang Zhang, Koushil Sreenath et al. · [arXiv](https://arxiv.org/abs/2610.20429) · 💬 53 pages (12 main text), 19 figures, 12 tables. Project page: https://iscoyizj.github.io/discrete-action-website/
+
+- **PAWA: Panoramic Action-conditioned World Modeling for Multiple Agents** `[WorldModel]`
+  - 提出多智能体全景动作条件世界模型，预测视野外的环境变化。
+  - Siqi Yang, Yimu Wang, Ziqi Cai, Chengxuan Zhu et al. · [arXiv](https://arxiv.org/abs/2610.20240) · 💬 24 pages. Project page: https://pawa.siki.moe
+
+- **OneLA: Learning Many Worlds from Latent Actions** `[WorldModel]`
+  - 从视频学习潜在动作，统一跨域世界模型控制空间
+  - Ziyu Zhu, Zhaoxu Sun, Fan Jiang, Chiyu Wang et al. · [arXiv](https://arxiv.org/abs/2610.20160)
+
+- **Atomic-WAM: Execution-Grounded Atomic-Motion Reasoning for World Action Models** `[WorldModel]`
+  - 提出原子运动推理，为世界动作模型提供执行接地
+  - Shijun Shi, Zhe Liu, Zhi Hou, Yinan Chen et al. · [arXiv](https://arxiv.org/abs/2610.20157)
+
+- **FoveaVLA: Foveation Actions Replace the Wrist Camera in VLAs** `[VLA]`
+  - 提出用学习到的注视动作替代腕部相机，外部相机即可获取细节，简化硬件并保持操作精度。
+  - Bingao Chen, Lihan Zha, C. Karen Liu, Guy Tevet · [arXiv](https://arxiv.org/abs/2610.20064) · 💬 Project website: https://tml.stanford.edu/FoveaVLA/
+
+- **Complementary Future Token Pruning for World Action Models** `[WorldModel]`
+  - 提出无训练的未来帧token剪枝框架，显著降低世界动作模型推理延迟。
+  - Baekseung Kim, Junhoo Lee, Sohyeon Hong, Suhyun Jeon et al. · [arXiv](https://arxiv.org/abs/2610.19957)
+
+- **StateCraft: Augmenting Video World Models with Abstract-State Reasoning** `[WorldModel]`
+  - 用抽象状态推理增强视频世界模型的长程一致性
+  - Lorenzo Venturoli, Nedko Savov, Xi Wang, Marc Pollefeys et al. · [arXiv](https://arxiv.org/abs/2610.19795)
+
+- **Coordi-pi: Coordination-Aware Dual-Hand Action Representation for Bimanual Dexterous Manipulation** `[RobotPolicy]`
+  - 提出协调感知的双手动作表示提升灵巧操作
+  - Yiming Meng, Yanming Shao, Weijie Shen, Kunyang Lin et al. · [arXiv](https://arxiv.org/abs/2610.19753)
+
+- **ACRO: Actor-Critic Rollout Orchestration** `[VLA]`
+  - 提出ACRO演员-评论家编排层，动态决定VLA策略继续或干预，提升成功率。
+  - Junhoo Lee, Seungyeon Kim, Baekseung Kim, Minkyu Kim et al. · [arXiv](https://arxiv.org/abs/2610.19677) · 💬 18 pages
+
+- **SPECTRA-VLA: Base-Fine Hyperspectral Token Transfer at Frozen Vision-Language-Action Interfaces** `[VLA]`
+  - 提出SPECTRA-VLA，冻结VLA接口下高光谱token迁移，无需重训练实现光谱升级。
+  - Chih-Chung Hsu · [arXiv](https://arxiv.org/abs/2610.19651) · 💬 34 pages: 11-page main paper and 23-page supplementary material
+
+- **Back on Track: Deployment-time Policy Improvement via World Model Planning** `[WorldModel]`
+  - 部署时用世界模型规划改进策略，无需额外收集数据即可纠错。
+  - Colton Crosby, Hao Wang, Mac Schwager, Somil Bansal · [arXiv](https://arxiv.org/abs/2610.19579)
+
+- **VLRLA: Deployment-Time Adaptation of Vision-Language-Action Models through In-Context Reinforcement Learning** `[VLA]`
+  - 提出VLRLA，通过上下文强化学习实现VLA模型部署时自适应。
+  - Diyuan Shi, Yiqi Tang, Hongyin Zhang, You Wu et al. · [arXiv](https://arxiv.org/abs/2610.19517)
+
+- **Robota-Embed: Unified VLA Embeddings for Robot In-Context Learning and Evolution** `[VLA]`
+  - 首个联合编码任务、执行阶段与后续动作的VLA嵌入模型，支持机器人上下文学习与进化。
+  - Yunze Liu, Jing Wang, Shenrui Wu, Wenkun He et al. · [arXiv](https://arxiv.org/abs/2610.19495) · 💬 34 pages, 14 figures. Project page: https://robota-ai.github.io/robota-embed/
+
+- **Active Generative Simulation: Meta-Learning What to Simulate for Sim-and-Real Policy Co-Training** `[WorldModel]`
+  - 提出主动生成式仿真，元学习决定模拟内容，实现仿真与真实策略协同训练。
+  - Liqian Ma, Vaibhav Saxena, Utkarsh Aashu Mishra, Shuo Cheng et al. · [arXiv](https://arxiv.org/abs/2610.19479) · 💬 CoRL 2026
+
+- **PACER: Process-Aware VLA Policy Learning from Human Corrections for Robotic Disassembly** `[VLA]`
+  - 提出过程感知VLA策略，利用人类纠正学习机器人拆解的顺序与精确操作。
+  - Chang Liu, Sibo Tian, Litian Gong, Zhiwen Fan et al. · [arXiv](https://arxiv.org/abs/2610.19248)
+
+- **Decoupled Drift-Diffusion World Models for Consistent Future Frame Prediction** `[WorldModel]`
+  - 提出解耦漂移-扩散世界模型，分别建模确定性与随机未来帧变化。
+  - Anton Arapin, Aditya Singh, Yixin Wang, Jun Gao et al. · [arXiv](https://arxiv.org/abs/2610.19212) · 💬 32 pages, 18 figures, 7 tables. Project page: https://anton-arapin.github.io/d3wm-site
+
+- **Imagining Goals with Geometric Horizon Models for Policy Generalization** `[RobotPolicy]`
+  - 提出几何地平线模型想象目标，提升离线策略的泛化能力。
+  - Daniel Lawson, Dhruv Sreenivas, Adriana Hugessen, Khimya Khetarpal et al. · [arXiv](https://arxiv.org/abs/2610.19129)
+
+- **Action Jets: Learning the Local Shape of the Action-conditioned Data Manifold** `[WorldModel]`
+  - 学习动作条件数据流形的局部形状，以加速世界模型的动作评估。
+  - Anton Arapin, Chahyon Ku, Bernadette Bucher · [arXiv](https://arxiv.org/abs/2610.19007) · 💬 34 pages, 14 figures, 23 tables. Project page: https://anton-arapin.github.io/action-jets-site
 
 ### 全部论文
 
-- **ChunkAct: Action Chunking for Agentic Robotics** — （AI 摘要生成失败，请查看原文） · [2610.18874](https://arxiv.org/abs/2610.18874)
-- **LoopWAM: Closed-Loop Generalist Policy Improvement from Deployment Rollouts** — （AI 摘要生成失败，请查看原文） · [2610.18873](https://arxiv.org/abs/2610.18873)
-- **What Matters in Quality-Aware VLA Pretraining: A Benchmark and Empirical Study** — （AI 摘要生成失败，请查看原文） · [2610.18869](https://arxiv.org/abs/2610.18869)
-- **EmbodiedEvo: Self-improving Coding Agents for Physical Intelligence** — （AI 摘要生成失败，请查看原文） · [2610.18867](https://arxiv.org/abs/2610.18867)
-- **Interaction Latents as Actions for Contact-Rich Manipulation** — （AI 摘要生成失败，请查看原文） · [2610.18855](https://arxiv.org/abs/2610.18855)
-- **ForceWAM: Decoupling Future and Response Learning from Demo and Play Data for Contact-Rich Manipulation** — （AI 摘要生成失败，请查看原文） · [2610.18852](https://arxiv.org/abs/2610.18852)
-- **LIBERO-RIG: A Hardware-Setup Robustness Benchmark for Vision-Language-Action Models** — （AI 摘要生成失败，请查看原文） · [2610.18843](https://arxiv.org/abs/2610.18843)
-- **WorldOracle: Benchmarking Action-Conditioned World Models against Real-World Executions** — （AI 摘要生成失败，请查看原文） · [2610.18826](https://arxiv.org/abs/2610.18826)
-- **SEAR: Self-Evolving Agentic Robotics** — （AI 摘要生成失败，请查看原文） · [2610.18792](https://arxiv.org/abs/2610.18792)
-- **EqC: Equilibrium Energy Control for Introspective Lifelong Robot Learning** — （AI 摘要生成失败，请查看原文） · [2610.18790](https://arxiv.org/abs/2610.18790)
-- **GreenWAM: A World Foundation Model for Robotics** — （AI 摘要生成失败，请查看原文） · [2610.18774](https://arxiv.org/abs/2610.18774)
-- **RoboFQE: Rollout-Free Evaluation of Visual Robot Policies from Offline Trajectories** — （AI 摘要生成失败，请查看原文） · [2610.18699](https://arxiv.org/abs/2610.18699)
-- **UniW(A)M: A Unified Mixture-of-Experts Framework for World and World-Action Models** — （AI 摘要生成失败，请查看原文） · [2610.18697](https://arxiv.org/abs/2610.18697)
-- **ForkCast: Predictive Recovery for Vision-Language-Action Policies via Counterfactual Futures** — （AI 摘要生成失败，请查看原文） · [2610.18650](https://arxiv.org/abs/2610.18650)
-- **Grid or Nodes? Probing Object Memory in World Models Under Partial Observability** — （AI 摘要生成失败，请查看原文） · [2610.18637](https://arxiv.org/abs/2610.18637)
-- **ACCRUE: Continual Off-Policy Reinforcement Learning for Robot Foundation Models** — （AI 摘要生成失败，请查看原文） · [2610.18596](https://arxiv.org/abs/2610.18596)
-- **Order-Consistent Latent Geometry for Reliable Short-Horizon Planning in World Models** — （AI 摘要生成失败，请查看原文） · [2610.18570](https://arxiv.org/abs/2610.18570)
-- **WAVE-0: Bridging VLA Policies and WAMs with Lightweight Latent Future Prediction** — （AI 摘要生成失败，请查看原文） · [2610.18568](https://arxiv.org/abs/2610.18568)
-- **Thinker-WM: A Unified World Model with Shared Multimodal Representations for Embodied Intelligence** — （AI 摘要生成失败，请查看原文） · [2610.18447](https://arxiv.org/abs/2610.18447)
-- **Benchmarking Interaction-Oriented Aerial Mobility across Heterogeneous Environments** — （AI 摘要生成失败，请查看原文） · [2610.18381](https://arxiv.org/abs/2610.18381)
-- **DR-VLA: Learning Human-Like Quadruped Navigation from Egocentric Web Videos via Domain-Invariant Scene Representations** — （AI 摘要生成失败，请查看原文） · [2610.18373](https://arxiv.org/abs/2610.18373)
-- **AffectWorld: Benchmarking Emotion-Driven Future World Prediction** — （AI 摘要生成失败，请查看原文） · [2610.18305](https://arxiv.org/abs/2610.18305)
-- **LongForcing: Scaling Temporal Manifold Matching for Long-Horizon World Rollout** — （AI 摘要生成失败，请查看原文） · [2610.18289](https://arxiv.org/abs/2610.18289)
-- **SkipWorld: Latent Skip Planning with Distilled World Models for Efficient Visual Navigation** — （AI 摘要生成失败，请查看原文） · [2610.18135](https://arxiv.org/abs/2610.18135)
-- **LynxScenes: A Large-Scale Real-World Benchmark for Outdoor Wheel-Legged Robot Perception, Navigation, Imagination and Reconstruction** — （AI 摘要生成失败，请查看原文） · [2610.18093](https://arxiv.org/abs/2610.18093)
-- **Data-Free Continual Learning for World Action Model with Rectified Generative Replay** — （AI 摘要生成失败，请查看原文） · [2610.18038](https://arxiv.org/abs/2610.18038)
-- **TRACE: Efficient Transfer Learning for Neural Whole-Body Control Across Humanoid Embodiments** — （AI 摘要生成失败，请查看原文） · [2610.17999](https://arxiv.org/abs/2610.17999)
-- **Breaking the Average: Overcoming Convergent Defaults in Robotic Manipulation via Diagnostic Chain-of-Thought and Structured Guidance** — （AI 摘要生成失败，请查看原文） · [2610.17983](https://arxiv.org/abs/2610.17983)
-- **WoVR+: World Model as Reliable Simulator for Versatile VLA Policy Optimization with RL** — （AI 摘要生成失败，请查看原文） · [2610.17922](https://arxiv.org/abs/2610.17922)
-- **DriveWLA: Unifying Future Dynamics and Scene Semantics through World-Language-Action Modeling for Autonomous Driving** — （AI 摘要生成失败，请查看原文） · [2610.17903](https://arxiv.org/abs/2610.17903)
-- **The Human--VLA Communication Gap: What Humans Leave Implicit and What Policies Cannot Recover** — （AI 摘要生成失败，请查看原文） · [2610.17746](https://arxiv.org/abs/2610.17746)
-- **OccWAM: Occupancy World-Action Models with Joint Scene-to-Ego Flow Matching** — （AI 摘要生成失败，请查看原文） · [2610.17688](https://arxiv.org/abs/2610.17688)
-- **Acting Through Registers** — （AI 摘要生成失败，请查看原文） · [2610.17638](https://arxiv.org/abs/2610.17638)
-- **From Pixels to Executable Physics: Behavior-Grounded World Models for Embodied Action Consequence Prediction** — （AI 摘要生成失败，请查看原文） · [2610.17630](https://arxiv.org/abs/2610.17630)
-- **RAN-JEPA: An Action-Conditioned World Model for Energy-efficient Mobile Network Control** — （AI 摘要生成失败，请查看原文） · [2610.17584](https://arxiv.org/abs/2610.17584)
-- **TacitVLA: Reasoning Vision-Language-Action Models Without Reasoning Latency** — （AI 摘要生成失败，请查看原文） · [2610.17540](https://arxiv.org/abs/2610.17540)
-- **Box-WAM: Box Trajectories as Compact State Representations for World Action Models** — （AI 摘要生成失败，请查看原文） · [2610.17526](https://arxiv.org/abs/2610.17526)
-- **YUBI-Real2Sim: 3DGS Scene Verification for Reliable Policy Evaluation** — （AI 摘要生成失败，请查看原文） · [2610.17521](https://arxiv.org/abs/2610.17521)
-- **Multics: Generative Multi-Player World Model with Hierarchical Communication** — （AI 摘要生成失败，请查看原文） · [2610.17201](https://arxiv.org/abs/2610.17201)
-- **MARS: Systematic Multi-Level Acceleration for World Action Models** — （AI 摘要生成失败，请查看原文） · [2610.17141](https://arxiv.org/abs/2610.17141)
-- **D-World: An Explicit World-Language-Action Model with Recursive Self-Improvement under Dual Control** — （AI 摘要生成失败，请查看原文） · [2610.17114](https://arxiv.org/abs/2610.17114)
-- **PatientWM: Towards Generalizable Clinical World Models via Unified Patient States** — （AI 摘要生成失败，请查看原文） · [2610.17059](https://arxiv.org/abs/2610.17059)
-- **AUGUstus: Autonomous Driving VLA Model with Unified Generation and Understanding** — （AI 摘要生成失败，请查看原文） · [2610.16985](https://arxiv.org/abs/2610.16985)
-- **UniLAP: A Unified Latent Action Policy for Cross-Embodiment Manipulation** — （AI 摘要生成失败，请查看原文） · [2610.16969](https://arxiv.org/abs/2610.16969)
-- **LIBERO-Industry: Benchmarking Robotic Manipulation under Industrial Process Constraints** — （AI 摘要生成失败，请查看原文） · [2610.16782](https://arxiv.org/abs/2610.16782)
-- **Relational Learning as World Modeling** — （AI 摘要生成失败，请查看原文） · [2610.16763](https://arxiv.org/abs/2610.16763)
-- **What Limits Cross-Task Generalization in World Action Models?** — （AI 摘要生成失败，请查看原文） · [2610.16641](https://arxiv.org/abs/2610.16641)
-- **Language2Drive: Do Vision-Language-Action Models Really Follow the Instructions in Autonomous Driving?** — （AI 摘要生成失败，请查看原文） · [2610.16634](https://arxiv.org/abs/2610.16634)
-- **VLA-GAUGE: Systematically Evaluating Generalization and Robustness in Vision-Language-Action Models** — （AI 摘要生成失败，请查看原文） · [2610.16567](https://arxiv.org/abs/2610.16567)
-- **G$^2$WAM: World Action Models for Efficient and Geometry Grounded Image-Goal Navigation** — （AI 摘要生成失败，请查看原文） · [2610.16558](https://arxiv.org/abs/2610.16558)
-- **Trust-Calibrated VLA Policy Post-Training with Evolving Imagination** — （AI 摘要生成失败，请查看原文） · [2610.16517](https://arxiv.org/abs/2610.16517)
+- **Graph-Reweighted Behavior Cloning with Human Interventions for Precise Robotic Manipulation** — 用图重加权行为克隆处理人类干预数据，提升精细操作精度 · [2610.20504](https://arxiv.org/abs/2610.20504)
+- **AdaRSI: On-Demand Recursive Self-Improvement for Embodied Agents** — 提出按需递归自我改进，让具身智能体在长程任务中持续提升 · [2610.20474](https://arxiv.org/abs/2610.20474)
+- **Towards Agentic Robots: Model, Data, Environment, and Harness** — 提出智能体机器人框架，整合模型、数据、环境与工具链，实现目标导向编排。 · [2610.20442](https://arxiv.org/abs/2610.20442)
+- **Human Demonstrations as Post-Training Data for Any Robot Body: Retargeting the Object, Not the Hand** — 提出以物体为重定向目标，将人类演示用于任意机器人本体的后训练。 · [2610.20351](https://arxiv.org/abs/2610.20351)
+- **ObjDream: Guiding Vision-Language-Action Models with Object-Level Understanding and Future State Prediction** — 提出对象级理解与未来状态预测引导VLA模型，提升操作能力 · [2610.20223](https://arxiv.org/abs/2610.20223)
+- **Tactile-Guided Robot Learning: From Representation Learning to Foundation Models** — 综述触觉引导的机器人学习，从表征到基础模型 · [2610.20134](https://arxiv.org/abs/2610.20134)
+- **MorphAct: Robot Policies Morphing with the Worlds They Act In** — 提出策略参数随交互环境动态调整的机器人策略，提升跨环境泛化能力。 · [2610.20019](https://arxiv.org/abs/2610.20019)
+- **Neurosymbolic Learning of Interpretable World Models** — 提出神经符号可解释世界模型，融合符号知识提升表示透明度和规划能力。 · [2610.19955](https://arxiv.org/abs/2610.19955)
+- **What Matters for World Modeling in Vision-Language-Action Models?** — 系统分析VLA中世界模型的设计选择与关键因素 · [2610.19825](https://arxiv.org/abs/2610.19825)
+- **One-shot Human Video-Guided Adaptation for Vision-Language-Action Models** — 单段人类视频引导VLA快速适应新任务 · [2610.19746](https://arxiv.org/abs/2610.19746)
+- **Accelerating VLA Inference with Perturbation Informed Execution** — 提出扰动知情执行，利用动作块内扰动信息加速VLA推理，减少无效执行。 · [2610.19656](https://arxiv.org/abs/2610.19656)
+- **Model What Matters: Decision-Guided Selective World Modeling for Language Agents** — 提出决策引导选择性世界建模，聚焦任务相关状态，提升语言智能体RL效率。 · [2610.19642](https://arxiv.org/abs/2610.19642)
+- **ForceBench: Benchmarking Force Integration for Robotic Manipulation** — 提出力觉集成基准ForceBench，统一任务与设置以评估VLA力反馈效果。 · [2610.19604](https://arxiv.org/abs/2610.19604)
+- **Cracking Mobile Manipulation: From Failure Diagnosis to Agentic Robot System** — 诊断移动操作失败原因，构建智能体系统提升长程任务成功率。 · [2610.19600](https://arxiv.org/abs/2610.19600)
+- **Paraphrase Consensus Is Not Self-Consistency: Instruction Reliance and Robustness in VLA Policies** — 揭示VLA策略对指令改写极敏感，提示集成虽提升语言鲁棒性但非自洽性。 · [2610.19438](https://arxiv.org/abs/2610.19438)
+- **SonoWorld: Towards Interactive Pose-Controllable Ultrasound World Models** — 提出交互式姿态可控的超声世界模型，为机器人超声策略学习提供仿真环境。 · [2610.19327](https://arxiv.org/abs/2610.19327)
+- **End-to-End Vision-Language-Action Policies for Autonomous Lunar Rover Docking** — 提出端到端VLA策略用于月球车自主对接，应对极端光照与感知扰动。 · [2610.19224](https://arxiv.org/abs/2610.19224)
+- **Post-Training, Finetuning, and Steering:A Field Guide for Curating Training Data** — 系统梳理VLA模型后训练、微调与引导的数据策展方法，提供实践指南。 · [2610.19143](https://arxiv.org/abs/2610.19143)
 
 ---
 
@@ -79,42 +124,41 @@
 
 ### ⭐ 强烈建议关注
 
-（今日无强烈建议项）
+- **[physical-superintelligence-lab/Psi0](https://github.com/physical-superintelligence-lab/Psi0)** `源码仓` `Python` `⭐2864` 🔄活跃 
+  - 开源人形机器人VLA基础模型，面向通用移动操作与操作智能。
+- **[dexmal/opendm](https://github.com/dexmal/opendm)** `源码仓` `Python` `⭐2304` 🔄活跃 
+  - 开放世界具身智能基础模型，支持通用操作与交互。
+- **[OpenWAM-Official/OpenWAM](https://github.com/OpenWAM-Official/OpenWAM)** `源码仓` `Python` `⭐1033` 🔄活跃 
+  - 开源模块化世界-动作模型预训练框架，系统探索WAM。
+- **[FluxVLA/FluxVLA](https://github.com/FluxVLA/FluxVLA)** `源码仓` `Python` `⭐741` 🔄活跃 
+  - 一站式VLA工程平台，覆盖数据到真机部署，含模型实现与训练推理代码
+- **[xiaomi-research/recogdrive](https://github.com/xiaomi-research/recogdrive)** `源码仓` `Python` `⭐623` 🔄活跃 
+  - ReCogDrive强化认知框架，面向端到端自动驾驶，含训练推理代码
+- **[OpenWAM/OpenWAM](https://github.com/OpenWAM/OpenWAM)** `源码仓` `Python` `⭐199` 🔄活跃 
+  - 斯坦福官方开源，可组合世界-动作模型框架，Python实现。
+- **[greenvla/GreenVLA](https://github.com/greenvla/GreenVLA)** `源码仓` `Python` `⭐144` 🔄活跃 
+  - Sber团队分阶段VLA模型，面向通用机器人，含论文与代码。
 
 ### 新仓库 / 活跃仓库
 
-- [NVIDIA/cosmos](https://github.com/NVIDIA/cosmos) `源码仓` `Jupyter Notebook` `⭐12032` — NVIDIA Cosmos is an open platform of world models, datasets, and tools that enables developers to build Physical AI for robots, autonomous vehicles, smart infrastructure, and more.
-- [datawhalechina/every-embodied](https://github.com/datawhalechina/every-embodied) `源码仓` `Jupyter Notebook` `⭐4054` — 仅需Python基础，从0构建自己的具身智能机器人；从0逐步构建VLA/OpenVLA/SmolVLA/Pi0， 深入理解具身智能
-- [LMD0311/Awesome-World-Model](https://github.com/LMD0311/Awesome-World-Model) `源码仓` `—` `⭐2280` — Collect some World Models for Autonomous Driving (and Robotic, etc.) papers.
-- [sii-research/tau-0-vla](https://github.com/sii-research/tau-0-vla) `源码仓` `Python` `⭐640` — This repo is the official implementation of  "τ0-VLA: a Hierarchical Robot Foundation Model with World-Model-Guided Test-Time Computation".
-- [lucasjinreal/Crane](https://github.com/lucasjinreal/Crane) `源码仓` `Rust` `⭐502` — A Pure Rust based LLM, VLM, VLA, TTS, OCR Inference Engine, powering by Candle & Rust. Alternate to your llama.cpp but much more simpler and cleaner..
-- [RobotControlStack/robot-control-stack](https://github.com/RobotControlStack/robot-control-stack) `源码仓` `Python` `⭐166` — A lean, ROS-free sim-to-real framework for training and deploying Vision-Language-Action (VLA) models and RL agents. Native MuJoCo Gymnasium wrappers with synchronous execution for Franka, UR5e, xArm, SO101 and YAM.
-- [hanyangyu1021/maskwam](https://github.com/hanyangyu1021/maskwam) `源码仓` `Python` `⭐47` — Official implementation of MaskWAM: Unifying Mask Prompting and Prediction for World-Action Models
-- [drussell23/JARVIS](https://github.com/drussell23/JARVIS) `源码仓` `Python` `⭐33` — Trinity AGI OS -- Autonomous self-evolving AI operating system. Ouroboros + Venom proactive self-development engine, 19 sensors, 11-phase governance pipeline, Trinity consciousness, VLA vision pipeline, voice biometric auth. The organism develops itself.
-- [hanjianhua44/Awesome-VLA-Papers](https://github.com/hanjianhua44/Awesome-VLA-Papers) `源码仓` `Python` `⭐30` — A curated collection of papers on Vision-Language-Action (VLA) models for autonomous driving and robotics
+- [RealXiaoze/humanoid-motion-intelligence](https://github.com/RealXiaoze/humanoid-motion-intelligence) `文档/汇总` `—` `⭐648` — 人形机器人运动智能知识库，收录论文、开源项目、产业与求职信息
+- [worldbench/awesome-vla-for-ad](https://github.com/worldbench/awesome-vla-for-ad) `文档/汇总` `HTML` `⭐500` — VLA自动驾驶综述列表，涵盖过去现在未来工作
 
 ---
 
 ## 🤗 HuggingFace 新模型
 
-- [Adam-YAN/vla-adapter-pro-liberox-base](https://huggingface.co/Adam-YAN/vla-adapter-pro-liberox-base) · ⬇0 · 创建于 2026-10-14
-- [ib-007/vlarm_smolvla_t1](https://huggingface.co/ib-007/vlarm_smolvla_t1) · ⬇0 · 创建于 2026-10-14
-- [Dongkkka/Task_000759_Move_Vegetable_Whiteroom_VLA-JEPA-bs8-step5000-lr1e4-causalFalse](https://huggingface.co/Dongkkka/Task_000759_Move_Vegetable_Whiteroom_VLA-JEPA-bs8-step5000-lr1e4-causalFalse) · ⬇0 · 创建于 2026-10-14
-- [ib-007/vlarm_act_t1](https://huggingface.co/ib-007/vlarm_act_t1) · ⬇0 · 创建于 2026-10-14
-- [Adam-YAN/lingbot-vla-v2-6b-e5-allclean-ep6-gbs384-s7](https://huggingface.co/Adam-YAN/lingbot-vla-v2-6b-e5-allclean-ep6-gbs384-s7) · ⬇0 · 创建于 2026-10-14
-- [tsangb34/lingbot-vla-v2-6b-droid-towel-in-basket-5ep](https://huggingface.co/tsangb34/lingbot-vla-v2-6b-droid-towel-in-basket-5ep) · ⬇0 · 创建于 2026-10-14
-- [ben090909/vla-vector-06](https://huggingface.co/ben090909/vla-vector-06) · ⬇0 · 创建于 2026-10-13
-- [Fantasyyy/SDUF-Team-Lingbot-vla-2-competition-10k-fp32](https://huggingface.co/Fantasyyy/SDUF-Team-Lingbot-vla-2-competition-10k-fp32) · ⬇0 · 创建于 2026-10-13
-- [endeshen/vla-finetune-forgetting-ckpts-intermediate](https://huggingface.co/endeshen/vla-finetune-forgetting-ckpts-intermediate) · ⬇0 · 创建于 2026-10-13
-- [endeshen/vla-finetune-forgetting-ckpts](https://huggingface.co/endeshen/vla-finetune-forgetting-ckpts) · ⬇0 · 创建于 2026-10-13
-- [nikodembartnik/vla_jepa_rebot_towel_folding_2026-10-12_14-10-32](https://huggingface.co/nikodembartnik/vla_jepa_rebot_towel_folding_2026-10-12_14-10-32) · ⬇0 · 创建于 2026-10-12
-- [rayaanoidpr/grandtour-world-models](https://huggingface.co/rayaanoidpr/grandtour-world-models) · ⬇0 · 创建于 2026-10-13
-- [Nehaguptaski/embodied-ai](https://huggingface.co/Nehaguptaski/embodied-ai) · ⬇0 · 创建于 2026-10-13
-- [zielinski9113/embodied-ai](https://huggingface.co/zielinski9113/embodied-ai) · ⬇0 · 创建于 2026-10-13
-- [cody-miller/embodied-ai8](https://huggingface.co/cody-miller/embodied-ai8) · ⬇0 · 创建于 2026-10-13
-- [Enzo-teixeira/embodied-ai-analysis](https://huggingface.co/Enzo-teixeira/embodied-ai-analysis) · ⬇0 · 创建于 2026-10-13
-- [KUMARAJAYli/embodied-ai-survey](https://huggingface.co/KUMARAJAYli/embodied-ai-survey) · ⬇0 · 创建于 2026-10-13
-- [ttakahashijason/embodied-ai60](https://huggingface.co/ttakahashijason/embodied-ai60) · ⬇0 · 创建于 2026-10-13
+- [vorobyovmaxim/embodied-ai](https://huggingface.co/vorobyovmaxim/embodied-ai) · ⬇14 · 创建于 2026-10-13
+- [irambv05/embodied-ai](https://huggingface.co/irambv05/embodied-ai) · ⬇12 · 创建于 2026-10-13
+- [immarcussantos/study-embodied-ai](https://huggingface.co/immarcussantos/study-embodied-ai) · ⬇11 · 创建于 2026-10-13
+- [t0rn0d0/VLA-Delta-robotwin](https://huggingface.co/t0rn0d0/VLA-Delta-robotwin) · ⬇0 · 创建于 2026-10-15
+- [t0rn0d0/VLA-Delta-libero](https://huggingface.co/t0rn0d0/VLA-Delta-libero) · ⬇0 · 创建于 2026-10-15
+- [mliv/lingbot-vla-v2-arx5-block-fullframe-fixed](https://huggingface.co/mliv/lingbot-vla-v2-arx5-block-fullframe-fixed) · ⬇0 · 创建于 2026-10-15
+- [Donghyun1228/ttt-vla-libero-sglp-mlp-decoder-20261015](https://huggingface.co/Donghyun1228/ttt-vla-libero-sglp-mlp-decoder-20261015) · ⬇0 · 创建于 2026-10-15
+- [tsangb34/lingbot-vla-v2-6b-droid-pour-water-5ep](https://huggingface.co/tsangb34/lingbot-vla-v2-6b-droid-pour-water-5ep) · ⬇0 · 创建于 2026-10-14
+- [SamerAyyad/VLA_Samer_11.10.2026_300eps_policy_SmolVLA](https://huggingface.co/SamerAyyad/VLA_Samer_11.10.2026_300eps_policy_SmolVLA) · ⬇0 · 创建于 2026-10-14
+- [t0rn0d0/VLA-Delta-base](https://huggingface.co/t0rn0d0/VLA-Delta-base) · ⬇0 · 创建于 2026-10-14
+- [SignalIsPuPuPu/GTA-VLA-pretrain-380k](https://huggingface.co/SignalIsPuPuPu/GTA-VLA-pretrain-380k) · ⬇0 · 创建于 2026-10-14
 
 ---
 
