@@ -27,13 +27,17 @@ _load_dotenv()
 def env(name: str, default: str = "") -> str:
     return os.environ.get(name, default)
 
-# ---------- LLM（灵枢 / OpenAI 兼容） ----------
-LINGSHU_BASE_URL = env("LINGSHU_BASE_URL", "https://computing.huawei.com/lingshu/api/v1")
-LINGSHU_API_KEY = env("LINGSHU_API_KEY", env("DEEPSEEK_API_KEY", ""))
-LINGSHU_MODEL = env("LINGSHU_MODEL", "DeepSeek-V4-Flash-0731")
-# 自定义 CA 证书（本机 lingshu_chain.pem），为空则用系统证书
-CA_CERT_FILE = env("CA_CERT_FILE", "/root/.certs/lingshu_chain.pem")
-LLM_MAX_TOKENS = int(env("LLM_MAX_TOKENS", "1600"))
+# ---------- LLM（OpenAI 兼容） ----------
+# 默认 ModelScope 公网推理接口（GitHub Actions runner 可访问）；
+# 兼容旧配置名 LINGSHU_*；如用灵枢需提供其公网网关域名（内网域名 runner 无法解析）。
+LLM_BASE_URL = env("LLM_BASE_URL") or env("LINGSHU_BASE_URL") or "https://api-inference.modelscope.cn/v1/"
+LLM_API_KEY = env("LLM_API_KEY") or env("LINGSHU_API_KEY") or env("DEEPSEEK_API_KEY", "")
+LLM_MODEL = env("LLM_MODEL") or env("LINGSHU_MODEL") or "deepseek-ai/DeepSeek-V4.1-Flash"
+# 备用模型（逗号分隔）：主模型失败/限流时依次尝试
+LLM_FALLBACK_MODELS = [m.strip() for m in env("LLM_FALLBACK_MODELS", "").split(",") if m.strip()]
+# 自定义 CA 证书：仅内部网关（如灵枢）需要；默认空 = 系统证书（公网端点）
+CA_CERT_FILE = env("CA_CERT_FILE", "").strip()
+LLM_MAX_TOKENS = int(env("LLM_MAX_TOKENS", "2000"))
 LLM_TEMPERATURE = float(env("LLM_TEMPERATURE", "0.3"))
 
 # ---------- GitHub ----------

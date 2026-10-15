@@ -33,12 +33,14 @@ jobs:
         run: |
           python run_daily.py
         env:
-          LINGSHU_API_KEY: ${{ secrets.LINGSHU_API_KEY }}
-          LINGSHU_BASE_URL: ${{ vars.LINGSHU_BASE_URL || 'https://computing.huawei.com/lingshu/api/v1' }}
-          LINGSHU_MODEL: ${{ vars.LINGSHU_MODEL || 'DeepSeek-V4-Flash-0731' }}
-          # 灵枢 API 使用自签证书链：指向仓库内 certs/ 下的证书
-          # （GitHub Actions runner 不信任该自签 CA，必须显式指定）
-          CA_CERT_FILE: ${{ github.workspace }}/certs/lingshu_chain.pem
+          # LLM 总结：默认 ModelScope 公网 OpenAI 兼容接口（GitHub runner 可访问）
+          # ⚠️ 灵枢(computing.huawei.com)无公网 DNS，runner 无法解析；如需灵枢需其公网网关
+          LLM_API_KEY: ${{ secrets.MODELSCOPE_ACCESS_TOKEN }}
+          LLM_BASE_URL: ${{ vars.LLM_BASE_URL || 'https://api-inference.modelscope.cn/v1/' }}
+          LLM_MODEL: ${{ vars.LLM_MODEL || 'deepseek-ai/DeepSeek-V4.1-Flash' }}
+          LLM_FALLBACK_MODELS: ${{ vars.LLM_FALLBACK_MODELS || 'ZhipuAI/GLM-5.3-Flash,moonshotai/Kimi-K3' }}
+          # 公网端点用系统证书即可；若用灵枢公网网关再设置 CA_CERT_FILE
+          CA_CERT_FILE: ''
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LOOKBACK_DAYS: ${{ vars.LOOKBACK_DAYS || '2' }}
 

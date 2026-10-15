@@ -4,7 +4,7 @@
 
 用法：
     pip install -r requirements.txt
-    cp .env.example .env   # 填入 LINGSHU_API_KEY 等
+    cp .env.example .env   # 填入 LLM_API_KEY（ModelScope 令牌）等
     python run_daily.py
 
 产出（写入 reports/）：

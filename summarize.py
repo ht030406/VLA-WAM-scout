@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-"""灵枢 LLM 总结模块：批量生成论文亮点摘要 + 仓库价值判断。
+"""LLM 总结模块（OpenAI 兼容端点）：批量生成论文亮点摘要 + 仓库价值判断。
+
+默认走 ModelScope 公网推理接口（GitHub Actions 可访问）；也可通过
+LLM_BASE_URL / LLM_API_KEY / CA_CERT_FILE 切换任意兼容端点（如灵枢公网网关）。
 
 防御性设计：任何一次 API 失败都不影响整体流程——
 论文/仓库条目缺失总结时，report.py 会给出可读降级文案。
@@ -18,54 +21,64 @@ import config
 
 class LingshuClient:
     def __init__(self):
-        self.api_key = config.LINGSHU_API_KEY
+        self.api_key = config.LLM_API_KEY
         if not self.api_key:
-            raise RuntimeError("LINGSHU_API_KEY 未配置")
-        self.url = f"{config.LINGSHU_BASE_URL.rstrip('/')}/chat/completions"
+            raise RuntimeError("LLM_API_KEY 未配置（可用 MODELSCOPE_ACCESS_TOKEN 或 LLM_API_KEY）")
+        self.url = f"{config.LLM_BASE_URL.rstrip('/')}/chat/completions"
+        self.models = [config.LLM_MODEL] + config.LLM_FALLBACK_MODELS
         self.session = requests.Session()
         self.session.headers.update({
             "Authorization": f"Bearer {self.api_key}",
             "Content-Type": "application/json",
         })
-        # 自签 CA：灵枢链证书
+        # 自定义 CA：仅内部网关（灵枢）需要；公网端点用系统证书
         cert = config.CA_CERT_FILE
         self.verify = cert if cert and _path_exists(cert) else True
         self.last_error: Optional[str] = None   # 最近一次调用失败原因（供报告内联诊断）
         if cert:
-            print(f"  [llm] 使用自签 CA 验证灵枢 API: {cert} "
-                  f"(存在={_path_exists(cert)})")
+            print(f"  [llm] 使用自签 CA 验证: {cert} (存在={_path_exists(cert)})")
         else:
-            print("  [llm] 未配置 CA_CERT_FILE，回退为系统证书验证（灵枢自签 CA 将失败）")
+            print("  [llm] 使用系统证书验证（公网端点）")
+        print(f"  [llm] 端点: {config.LLM_BASE_URL}")
+        print(f"  [llm] 模型: {', '.join(self.models)}")
 
     def chat(self, messages: List[dict], max_tokens: int = None, temperature: float = None,
              retries: int = 2) -> str:
+        """依次尝试主模型与备用模型；全部失败返回 "" 并记录 last_error。"""
         body = {
-            "model": config.LINGSHU_MODEL,
             "messages": messages,
             "max_tokens": max_tokens or config.LLM_MAX_TOKENS,
             "temperature": temperature if temperature is not None else config.LLM_TEMPERATURE,
         }
-        for attempt in range(retries + 1):
-            try:
-                r = self.session.post(self.url, json=body, timeout=180, verify=self.verify)
-                if r.status_code == 429:
-                    time.sleep(20 * (attempt + 1))
-                    continue
-                r.raise_for_status()
-                data = r.json()
-                content = data["choices"][0]["message"].get("content")
-                if content is None or not content.strip():
-                    # 灵枢偶发返回空 content（或全在 reasoning 里），重试一次
-                    time.sleep(4 * (attempt + 1))
-                    continue
-                return content.strip()
-            except (requests.RequestException, KeyError, urllib3.exceptions.HTTPError) as e:
-                if attempt == retries:
-                    self.last_error = f"{type(e).__name__}: {e}"
-                    print(f"  [llm] call failed after {retries} retries: {e}")
-                    return ""
-                time.sleep(5 * (attempt + 1))
-        self.last_error = "API 连续返回空 content（重试后仍为空）"
+        for model in self.models:
+            payload = {**body, "model": model}
+            for attempt in range(retries + 1):
+                try:
+                    r = self.session.post(self.url, json=payload, timeout=180, verify=self.verify)
+                    if r.status_code == 429:
+                        if attempt == retries:
+                            self.last_error = f"429 限流（模型 {model}）"
+                        time.sleep(20 * (attempt + 1))
+                        continue
+                    r.raise_for_status()
+                    data = r.json()
+                    content = data["choices"][0]["message"].get("content")
+                    if content is None or not content.strip():
+                        # 偶发返回空 content（或全在 reasoning 里），重试
+                        if attempt == retries:
+                            self.last_error = f"API 连续返回空 content（模型 {model}）"
+                        time.sleep(4 * (attempt + 1))
+                        continue
+                    return content.strip()
+                except (requests.RequestException, KeyError, urllib3.exceptions.HTTPError) as e:
+                    if attempt < retries:
+                        time.sleep(5 * (attempt + 1))
+                    else:
+                        self.last_error = f"{type(e).__name__}: {e}（模型 {model}）"
+                        print(f"  [llm] 模型 {model} 失败，尝试下一个: {type(e).__name__}: {e}")
+                        break   # 跳出内层 → 外层换下一个模型
+
+        self.last_error = self.last_error or "所有模型均调用失败"
         return ""
 
 
